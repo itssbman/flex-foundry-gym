@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Dumbbell } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +29,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 ml-auto">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -42,9 +41,6 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 font-bold">
-              Join Now
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -73,9 +69,6 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 font-bold w-full">
-                Join Now
-              </Button>
             </div>
           </div>
         )}
