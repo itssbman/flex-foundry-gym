@@ -1,107 +1,86 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const testimonials = [
   {
     name: "Sarah Johnson",
-    role: "Fitness Enthusiast",
-    content: "Iron Gym transformed my life! The trainers are amazing and the equipment is top-notch. I've lost 30 pounds and gained incredible strength.",
-    rating: 5,
+    role: "Member since 2019",
+    content:
+      "Iron Gym is the first gym that actually stuck for me. The coaching is honest, the room is serious, and I'm stronger than I've ever been.",
   },
   {
     name: "Mike Chen",
-    role: "Professional Athlete",
-    content: "Best gym I've ever trained at. The 24/7 access fits my schedule perfectly, and the community here pushes me to be better every day.",
-    rating: 5,
+    role: "Competitive lifter",
+    content:
+      "The 24/7 access fits my schedule and the platform is always free when I need it. No fluff, no waiting — just the work.",
   },
   {
     name: "Emily Rodriguez",
-    role: "Yoga Instructor",
-    content: "From strength training to yoga classes, Iron Gym has it all. The variety keeps my workouts exciting and effective.",
-    rating: 5,
+    role: "Member since 2021",
+    content:
+      "Strength work, conditioning, classes — it's all here without the influencer circus. People come to train, and it shows.",
   },
 ];
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  const next = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  const prev = () =>
+    setCurrentIndex((p) => (p - 1 + testimonials.length) % testimonials.length);
 
   useEffect(() => {
-    const timer = setInterval(nextTestimonial, 5000);
+    const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, []);
 
+  const active = testimonials[currentIndex];
+
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Member <span className="text-primary">Success Stories</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Real results from real people who transformed their lives
-          </p>
+    <section className="border-t border-border bg-secondary/40 py-24 lg:py-32">
+      <div className="container mx-auto grid grid-cols-12 gap-y-10 px-6 lg:gap-x-12">
+        <div className="col-span-12 lg:col-span-3">
+          <p className="kicker">From the floor</p>
         </div>
 
-        <div className="max-w-4xl mx-auto relative">
-          <Card className="bg-card border-border">
-            <CardContent className="p-8 md:p-12">
-              <div className="flex justify-center mb-4">
-                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                  <Star key={i} className="h-6 w-6 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-xl md:text-2xl text-center mb-8 text-foreground leading-relaxed">
-                "{testimonials[currentIndex].content}"
+        <div className="col-span-12 lg:col-span-9">
+          <blockquote
+            key={currentIndex}
+            className="animate-fade-in font-display text-4xl leading-[1.05] sm:text-5xl lg:text-6xl"
+          >
+            <span className="text-primary">“</span>
+            {active.content}
+            <span className="text-primary">”</span>
+          </blockquote>
+
+          <div className="mt-10 flex flex-wrap items-end justify-between gap-6 border-t border-border pt-6">
+            <div>
+              <p className="font-label text-lg font-semibold uppercase tracking-wide">
+                {active.name}
               </p>
-              <div className="text-center">
-                <p className="font-bold text-lg">{testimonials[currentIndex].name}</p>
-                <p className="text-muted-foreground">{testimonials[currentIndex].role}</p>
-              </div>
-            </CardContent>
-          </Card>
+              <p className="kicker mt-1">{active.role}</p>
+            </div>
 
-          {/* Navigation Buttons */}
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevTestimonial}
-              className="border-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextTestimonial}
-              className="border-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
-          </div>
-
-          {/* Indicators */}
-          <div className="flex justify-center gap-2 mt-4">
-            {testimonials.map((_, index) => (
+            <div className="flex items-center gap-3">
+              <span className="font-label text-sm tracking-widest text-muted-foreground">
+                {String(currentIndex + 1).padStart(2, "0")} /{" "}
+                {String(testimonials.length).padStart(2, "0")}
+              </span>
               <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? "bg-primary w-8" : "bg-muted"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
+                onClick={prev}
+                aria-label="Previous"
+                className="border border-border p-3 transition-colors hover:border-primary hover:text-primary"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={next}
+                aria-label="Next"
+                className="border border-border p-3 transition-colors hover:border-primary hover:text-primary"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

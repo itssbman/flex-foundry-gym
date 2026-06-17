@@ -13,6 +13,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Archivo', 'system-ui', 'sans-serif'],
+        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+        label: ['Oswald', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -81,12 +86,12 @@ export default {
           "100%": { transform: "translateX(0)" }
         },
         "scale-in": {
-          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "0%": { transform: "scale(0.98)", opacity: "0" },
           "100%": { transform: "scale(1)", opacity: "1" }
         },
-        "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(0 84% 60% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(0 84% 60% / 0.6)" }
+        "rise": {
+          "0%": { opacity: "0", transform: "translateY(28px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" }
         }
       },
       animation: {
@@ -95,7 +100,7 @@ export default {
         "fade-in": "fade-in 0.5s ease-out",
         "slide-in": "slide-in 0.3s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "rise": "rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
     },
   },

@@ -27,7 +27,7 @@ const About = () => {
             <div className="animate-fade-in">
               <h2 className="text-4xl font-black mb-6">Our Story</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Founded in 2010, Iron Gym started with a simple mission: create a fitness space 
+                Founded in 2010, Iron Gym started with a simple mission: create a fitness space
                 where everyone feels welcome and empowered to achieve their goals.
               </p>
               <p className="text-lg text-muted-foreground mb-4">

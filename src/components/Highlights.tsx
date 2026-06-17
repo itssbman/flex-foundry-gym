@@ -1,61 +1,62 @@
-import { Dumbbell, Users, Trophy, Clock } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-
 const highlights = [
   {
-    icon: Dumbbell,
-    title: "Premium Equipment",
-    description: "State-of-the-art machines and free weights for optimal training",
+    title: "Real Iron",
+    description:
+      "Calibrated plates, competition bars, and racks built to be loaded — not photographed. Maintained weekly, never roped off.",
   },
   {
-    icon: Users,
-    title: "Expert Trainers",
-    description: "Certified professionals dedicated to your fitness journey",
+    title: "Coaches, not influencers",
+    description:
+      "Every trainer on the floor is certified and coaching full time. You get programming and corrections, not a content shoot.",
   },
   {
-    icon: Trophy,
-    title: "Proven Results",
-    description: "Thousands of success stories from our member community",
+    title: "Earned results",
+    description:
+      "Strength, conditioning, and the kind of progress that holds up outside the building. We track it, you feel it.",
   },
   {
-    icon: Clock,
-    title: "24/7 Access",
-    description: "Train on your schedule with round-the-clock facility access",
+    title: "Open around the clock",
+    description:
+      "Keyed 24/7 access for members. Early, late, or in between — the room is yours when the work is.",
   },
 ];
 
 const Highlights = () => {
   return (
-    <section className="py-20 bg-secondary/50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Why Choose <span className="text-primary">Iron Gym</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to achieve your fitness goals under one roof
-          </p>
-        </div>
+    <section className="py-24 lg:py-32">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-12 gap-y-12 lg:gap-x-12">
+          {/* Section heading */}
+          <div className="col-span-12 lg:col-span-4">
+            <p className="kicker mb-6">What you actually get</p>
+            <h2 className="font-display text-6xl leading-[0.9] lg:text-7xl">
+              Built to be
+              <br />
+              <span className="text-primary">used hard</span>
+            </h2>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((highlight, index) => {
-            const Icon = highlight.icon;
-            return (
-              <Card
-                key={index}
-                className="bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.3)] group animate-scale-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+          {/* Numbered editorial list */}
+          <ol className="col-span-12 lg:col-span-8">
+            {highlights.map((item, index) => (
+              <li
+                key={item.title}
+                className="grid grid-cols-[3rem_1fr] gap-6 border-t border-border py-8 last:border-b sm:grid-cols-[5rem_1fr]"
               >
-                <CardContent className="p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{highlight.title}</h3>
-                  <p className="text-muted-foreground">{highlight.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
+                <span className="font-display text-3xl text-muted-foreground sm:text-4xl">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="font-label text-xl font-semibold uppercase tracking-wide">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 max-w-xl leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
